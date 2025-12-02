@@ -43,7 +43,7 @@ Analysis of customer experience for **Commercial Bank of Ethiopia (CBE)**, **Ban
 
 ### Key Activities
 
-* **Sentiment Analysis:** Compute scores (positive/negative/neutral) using a transformer model or VADER/TextBlob.
+* **Sentiment Analysis:** Computed scores (positive/negative/neutral) using VADER.
 * **Thematic Analysis:** Extract keywords (TF-IDF/spaCy) and cluster them into 3-5 high-level themes (e.g., 'Account Access', 'Transaction Performance').
 
 ---
@@ -59,3 +59,40 @@ Analysis of customer experience for **Commercial Bank of Ethiopia (CBE)**, **Ban
 * **Tooling:** Use `psycopg2` or `SQLAlchemy` for insertion via Python.
 
 ---
+### Setup Database (Docker)
+
+```bash
+docker run --name pg-bank-reviews -e POSTGRES_PASSWORD=yourpassword -p 5432:5432 -d postgres
+```
+
+---
+
+### Create Tables Using `schema.sql`
+
+```bash
+psql -h localhost -U postgres -d bank_reviews
+\i path/to/db/schema.sql
+```
+
+> `schema.sql` contains `banks` and `reviews` tables—no manual creation needed.
+
+---
+
+### Query / Inspect Data
+
+```sql
+-- Preview first 10 reviews
+SELECT * FROM reviews LIMIT 10;
+
+-- Count reviews per bank
+SELECT bank_id, COUNT(*) FROM reviews GROUP BY bank_id;
+```
+
+> Keeping `schema.sql` in GitHub allows easy recreation of the database structure.
+
+
+
+
+
+
+
