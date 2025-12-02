@@ -90,8 +90,26 @@ SELECT bank_id, COUNT(*) FROM reviews GROUP BY bank_id;
 
 > Keeping `schema.sql` in GitHub allows easy recreation of the database structure.
 
+## 📊 Task 4: Insights & Recommendations
 
+**Goal**: Derive actionable insights from sentiment and themes and provide strategic guidance.
 
+### Key Activities
+
+* **Driver & Pain Point Extraction:** Identify $\mathbf{2+}$ drivers (e.g., fast navigation) and pain points (e.g., crashes) per bank using refined keyword analysis.
+* **Competitive Comparison:** Compare key performance indicators (KPIs) and thematic focus across the three banks (CBE vs. BOA vs. Dashen).
+* **Actionable Strategy:** Suggest $\mathbf{2+}$ concrete improvements per bank (e.g., improve login stability, add budgeting feature).
+* **Visualizations:** Create plots for sentiment distribution, review wordclouds, and theme clusters for easy consumption. 
+
+### Deliverables
+
+* `plots/` folder containing all sentiment and theme-based visualizations.
+* `data/clean/drivers_painpoints_summary.csv`
+* Optional PDF report summarizing key findings and recommendations.
+
+### 🧪 Unit Testing (Minimal)
+
+**Purpose:** Validate that core scripts run correctly and that sentiment/themes are processed reliably.
 
 
 
