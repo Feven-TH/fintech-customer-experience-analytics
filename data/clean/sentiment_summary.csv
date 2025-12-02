@@ -1,0 +1,4 @@
+bank,positive_count,neutral_count,negative_count,avg_sentiment_score
+CBE,254,180,44,0.24925962343096233
+BOA,176,181,132,0.04753435582822087
+Dashen,318,110,60,0.369984631147541
