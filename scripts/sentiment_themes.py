@@ -1,5 +1,5 @@
 import pandas as pd
-from textblob import TextBlob
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
@@ -7,19 +7,21 @@ from wordcloud import WordCloud
 
 df = pd.read_csv("data/clean/reviews_clean.csv")
 
-# --- Sentiment Analysis ---
+# --- Sentiment Analysis Using VADER ---
+analyzer = SentimentIntensityAnalyzer()
+
 def get_sentiment(text):
-    analysis = TextBlob(str(text))
-    if analysis.sentiment.polarity > 0.1:
+    score = analyzer.polarity_scores(str(text))["compound"]
+    if score >= 0.05:
         return "Positive"
-    elif analysis.sentiment.polarity < -0.1:
+    elif score <= -0.05:
         return "Negative"
     else:
         return "Neutral"
 
 df["sentiment"] = df["review"].apply(get_sentiment)
-print("Sentiment counts by bank:")
-print(df.groupby(["bank", "sentiment"]).size())
+df["sentiment_score"] = df["review"].apply(lambda x: analyzer.polarity_scores(str(x))["compound"])
+
 
 # --- Wordcloud Functions ---
 def plot_wordcloud(text, title):
